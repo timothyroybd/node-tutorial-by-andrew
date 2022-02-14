@@ -48,8 +48,18 @@ const removeNote = (title) => {
     console.log("No note found");
   }
 };
+//List Note
+const listNote = () => {
+  const notes = lodaNote();
+  console.log("Your Notes");
+
+  const noteTitle = notes.forEach((note) => {
+    console.log(note.title);
+  });
+};
 module.exports = {
   getNotes,
   addNote,
   removeNote,
+  listNote,
 };
