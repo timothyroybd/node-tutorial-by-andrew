@@ -62,11 +62,11 @@ const listNote = () => {
 //Read Note
 const readNote = (title) => {
   const notes = lodaNote();
-  const matchTitle = notes.find((note) => {
+  const matchedNote = notes.find((note) => {
     return note.title === title;
   });
-  if (matchTitle) {
-    console.log(matchTitle);
+  if (matchedNote) {
+    console.log(matchedNote.title, matchedNote.body);
   } else {
     console.log("The title not found");
   }
