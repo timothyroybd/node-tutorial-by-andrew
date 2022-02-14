@@ -6,9 +6,11 @@ const getNotes = () => {
 //Add Notes
 const addNote = (title, body) => {
   const notes = lodaNote();
-  const duplicateNotes = notes.filter((note) => note.title === title);
-  console.log(duplicateNotes);
-  if (duplicateNotes.length === 0) {
+
+  // const duplicateNotes = notes.filter((note) => note.title === title);
+  const duplicateNote = notes.find((note) => note.title === title);
+
+  if (!duplicateNote) {
     notes.push({
       title: title,
       body: body,
@@ -57,9 +59,22 @@ const listNote = () => {
     console.log(note.title);
   });
 };
+//Read Note
+const readNote = (title) => {
+  const notes = lodaNote();
+  const matchTitle = notes.find((note) => {
+    return note.title === title;
+  });
+  if (matchTitle) {
+    console.log(matchTitle);
+  } else {
+    console.log("The title not found");
+  }
+};
 module.exports = {
   getNotes,
   addNote,
   removeNote,
   listNote,
+  readNote,
 };
