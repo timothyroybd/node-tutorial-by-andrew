@@ -1,4 +1,4 @@
-const getNotes = require("./getNotes");
+const { getNotes, addNote, removeNote } = require("./notes");
 const yargs = require("yargs");
 
 //customize yargs version
@@ -6,6 +6,7 @@ yargs.version("1.1.0");
 //add, remove, read, list
 
 //create add command
+//first command is add; it takes title and body input and runs addnote function
 yargs.command({
   command: "add",
   describe: "Add a new note",
@@ -22,7 +23,7 @@ yargs.command({
     },
   },
   handler: (argv) => {
-    console.log(`Title: ${argv.title}, Description: ${argv.body}`);
+    addNote(argv.title, argv.body);
   },
 });
 
@@ -30,9 +31,15 @@ yargs.command({
 yargs.command({
   command: "remove",
   describe: "Remove a note",
-
-  handler: () => {
-    console.log("Removing the note");
+  builder: {
+    title: {
+      describe: "Remove Title",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler: (argv) => {
+    removeNote(argv.title);
   },
 });
 
